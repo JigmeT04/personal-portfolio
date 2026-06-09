@@ -1,0 +1,248 @@
+/* Center all main content and limit the width for better readability */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+}
+
+section {
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px; /* Keeps paragraphs from stretching too wide */
+  gap: 20px;
+}
+
+h2 {
+  font-size: 2rem;
+  border-bottom: 2px solid var(--light-blue);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  color: var(--gray);
+}
+
+h3 {
+  margin: 0 0 5px 0;
+  color: var(--light-green);
+  font-size: 1.3rem;
+}
+
+p {
+  line-height: 1.6;
+  margin: 0;
+}
+/* --- Modern Grid Layout --- */
+.grid-container {
+  display: grid;
+  /* Automatically creates side-by-side columns on desktop, stacks on mobile */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+  width: 100%;
+}
+
+/* --- Interactive UI Cards --- */
+.project-item,
+.experience-item {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  /* Creates the "Card" look with a subtle transparent background */
+  background-color: rgba(46, 82, 102, 0.2);
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid var(--light-blue);
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Hover effects make the site feel alive and interactive */
+.project-item:hover,
+.experience-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--light-green);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.experience-item ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none; /* Removes standard bullets for a cleaner look */
+  padding-left: 0;
+  margin: 0;
+  gap: 12px;
+}
+
+/* Custom bullet points using your accent color */
+.experience-item li::before {
+  content: "▹";
+  color: var(--light-green);
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+.experience-item li {
+  padding-left: 1em;
+}
+
+/* --- UI Tags for Skills --- */
+.project-item aside {
+  background-color: var(--light-blue);
+  color: var(--gray);
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  width: fit-content;
+  margin-top: auto; /* Pushes the tag to the very bottom of the card */
+}
+
+/* Slightly tweak headings inside cards to fit the new boxes */
+.project-item h3,
+.experience-item h3 {
+  margin: 0;
+  color: var(--gray);
+}
+.experience-item span {
+  color: var(--light-green);
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+/* Target ONLY the social icons in the About section */
+#about nav ul {
+  display: flex;
+  flex-direction: row;
+  padding-left: 0;
+  list-style-type: none;
+  justify-content: center;
+  gap: 30px;
+  margin: 20px 0;
+}
+
+#about nav li {
+  display: block;
+}
+
+i {
+  font-size: 40px;
+  transition: transform 0.2s ease; /* Smooth hover animation */
+}
+/* --- Interactive Hobbies Carousel --- */
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1000px; /* Slightly wider to give the peeking cards room */
+  margin: 0 auto;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 30px; /* Bring the gap back to separate the cards */
+  padding: 20px 0; /* Vertical padding so the box-shadows don't get cut off */
+  overflow-x: auto;
+
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  width: 100%;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-card {
+  /* Takes up 60% of the screen, leaving room for the edges of the other cards */
+  flex: 0 0 60%;
+  height: 25vh;
+  min-height: 200px;
+
+  background-color: var(--light-blue);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Magic property: Forces the browser to put this card perfectly in the center */
+  scroll-snap-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.carousel-card h3 {
+  color: var(--gray);
+  font-size: 2rem;
+}
+/* --- Utility Class for JavaScript DOM Shifting --- */
+.carousel-track.no-transition {
+  scroll-behavior: auto !important;
+  scroll-snap-type: none !important;
+}
+
+.header-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-top: 25px; /* Spacing between your title and the icons */
+}
+
+/* --- Multi-Carousel Layout --- */
+.hobby-section {
+  width: 100%;
+  margin-bottom: 50px; /* Adds breathing room between the different hobby carousels */
+}
+
+.hobby-section h3 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+  color: var(--light-green);
+}
+
+/* Adjust the card size so 3 carousels don't take up too much vertical space */
+.carousel-card {
+  height: 35vh; /* Reduced from 50vh */
+  min-height: 250px;
+  padding: 0; /* Remove padding so the image touches the very edge */
+  overflow: hidden; /* Keeps the rounded corners perfectly clean */
+}
+
+/* Make images perfectly cover the card without stretching */
+.carousel-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Size and animate all icons together */
+.header-links i {
+  font-size: 35px;
+  transition:
+    transform 0.2s ease,
+    color 0.3s ease;
+}
+
+.header-links i:hover {
+  transform: scale(1.1);
+  color: var(--gray);
+}
+
+/* Reset the button styles so it behaves exactly like an icon link */
+.theme-btn {
+  background: none;
+  border: none;
+  color: var(--light-green);
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}

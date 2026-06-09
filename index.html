@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <title>Jigme Topgyal | Software Engineer</title>
+  </head>
+  <body>
+    <nav class="navigation">
+      <ul class="navigation-list">
+        <li><a href="#about" class="navigation-link">About Me</a></li>
+        <li><a href="#projects" class="navigation-link">Projects</a></li>
+        <li>
+          <a href="#experiences" class="navigation-link">Experiences</a>
+        </li>
+        <li><a href="#hobbies" class="navigation-link">Hobbies</a></li>
+      </ul>
+    </nav>
+    <header>
+      <div class="brand-name">
+        <h1>Jigme Topgyal</h1>
+        <span class="title-sub">Software Engineer</span>
+      </div>
+
+      <div class="header-links">
+        <a
+          href="https://github.com/JigmeT04"
+          target="_blank"
+          aria-label="GitHub"
+        >
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/jigme-topgyal-984199227/"
+          target="_blank"
+          aria-label="LinkedIn"
+        >
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+        <a href="mailto:jigmetopgyal.cs@gmail.com" aria-label="Email">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+
+        <button
+          id="theme-toggle"
+          class="theme-btn"
+          aria-label="Toggle Light Mode"
+        >
+          <i class="fa-solid fa-sun"></i>
+        </button>
+      </div>
+    </header>
+    <main>
+      <section id="about">
+        <h2>About Me</h2>
+        <p>
+          Welcome to my personal portfolio! <br />
+          I am a full-stack engineer and a senior Computer Science student at
+          Queens College. I specialize in building secure, type-safe web
+          applications and designing optimized systems-level architectures.
+        </p>
+        <h3>Education</h3>
+        <aside>
+          Queens College, City University of New York | Expected Graduation:
+          2027
+        </aside>
+        <p>
+          Data Structures, Design & Analysis of Algorithms, Database Systems,
+          Operating Systems Principles, Software Engineering
+        </p>
+        <h3>Technical Skills</h3>
+        <p>
+          <strong>Languages:</strong> Java, C++, TypeScript, JavaScript,
+          HTML/CSS, SQL <br />
+          <strong>Frameworks & Libraries:</strong> Node.js, Next.js, React
+          <br />
+          <strong>Tools & Platforms:</strong> PostgreSQL, Firebase, Render,
+          Retool, Git, GitHub
+        </p>
+      </section>
+
+      <section id="projects">
+        <h2>Projects</h2>
+        <div class="grid-container"></div>
+        <div class="project-item">
+          <h3>Client Management Web Application</h3>
+          <p>
+            Designing and implementing a full-stack client management portal to
+            streamline appointment scheduling and tracking for a local nail
+            business. Leveraging Next.js Server Components and TypeScript to
+            build type-safe API endpoints for real-time status updates, while
+            architecting relational database schemas using PostgreSQL to
+            securely store encrypted client records and transaction history.
+          </p>
+          <aside>Skills: Next.js, TypeScript, PostgreSQL, Node.js</aside>
+        </div>
+
+        <div class="project-item">
+          <h3>Multi-Threaded Task+Data Partitioning</h3>
+          <p>
+            Architected a systems-level processing model in C++ to optimize CPU
+            utilization through dynamic task partitioning and parallel execution
+            strategies. Analyzed and resolved complex concurrency challenges,
+            utilizing mutexes and semaphores to eliminate race conditions.
+            Evaluated Linux Inter-Process Communication (IPC) mechanisms to
+            maximize data throughput and minimize latency between background
+            worker processes.
+          </p>
+          <aside>Skills: C++, Linux, Concurrency, IPC, Mutexes</aside>
+        </div>
+
+        <div class="project-item">
+          <h3>Personal Portfolio Website</h3>
+          <p>
+            This project is a personal portfolio website built using HTML, CSS,
+            and JavaScript. It showcases my skills, projects, and experiences in
+            a visually appealing and user-friendly manner.
+          </p>
+          <aside>Skills: HTML, CSS, JavaScript</aside>
+        </div>
+      </section>
+
+      <section id="experiences">
+        <h2>Experiences</h2>
+        <div class="grid-container"></div>
+        <div class="experience-item">
+          <h3>Data Integrity Intern | Runwei</h3>
+          <span><em>July 2025 - August 2025</em></span>
+          <ul>
+            <li>
+              Enhanced product stability by conducting comprehensive QA testing
+              on user and admin portals, submitting detailed bug reports with
+              annotated screenshots to accelerate development cycles.
+            </li>
+            <li>
+              Improved team-wide efficiency by developing and leading a live
+              tutorial on leveraging LLMs for high-quality opportunity sourcing.
+            </li>
+            <li>
+              Fostered collaboration and technical integrity by proactively
+              identifying and correcting a database schema error.
+            </li>
+          </ul>
+        </div>
+
+        <div class="experience-item">
+          <h3>Consultant Student Intern | BuildFellowship</h3>
+          <span><em>February 2025 – May 2025</em></span>
+          <ul>
+            <li>
+              Developed a secure password-sharing web application using Node.js,
+              PostgreSQL, and Render.
+            </li>
+            <li>
+              Built and consumed secure RESTful APIs in Node.js, integrated into
+              the frontend UI using Retool.
+            </li>
+            <li>
+              Implemented JWT-based authentication and bcrypt password hashing
+              to protect user information in the database.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="hobbies">
+        <h2>Hobbies</h2>
+        <p>
+          When I step away from the keyboard, I keep my routine active and
+          structured. Here is a look at what I do off-screen.
+        </p>
+
+        <div class="hobby-section">
+          <h3>🏋️‍♂️ Weightlifting</h3>
+          <div class="carousel-wrapper">
+            <div class="carousel-track">
+              <div class="carousel-card">
+                <img src="gym1.jpg" alt="workout-image" />
+              </div>
+              <div class="carousel-card">
+                <img src="gym2.jpg" alt="workout-image" />
+              </div>
+              <div class="carousel-card">
+                <img src="gym3.jpg" alt="workout-image" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hobby-section">
+          <h3>🎮 Gaming</h3>
+          <div class="carousel-wrapper">
+            <div class="carousel-track">
+              <div class="carousel-card">
+                <img src="game1.jpg" alt="gaming-image" />
+              </div>
+              <div class="carousel-card">
+                <img src="game2.jpg" alt="gaming-image" />
+              </div>
+              <div class="carousel-card">
+                <img src="game3.jpg" alt="gaming-image" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

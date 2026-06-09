@@ -1,0 +1,47 @@
+:root {
+  --light-blue: #2e5266;
+  --dark-blue: #0b132b;
+  --gray: #ccdbdc;
+  --dark-green: #3e5622;
+  --light-green: #e3655b; /*buttons and links*/
+  --black: #000000;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100dvh;
+  background-color: var(--dark-blue);
+  color: var(--gray);
+  font-family: "JetBrains Mono", monospace;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* The New Light Mode Override */
+body.light-mode {
+  --dark-blue: #f8f9fa; /* Now acts as the light page background */
+  --light-blue: #e9ecef; /* Now acts as the light card/nav background */
+  --gray: #212529; /* Now acts as the dark text color */
+  --black: #ffffff; /* Flips the sticky nav shadow/background if needed */
+
+  /* Notice we DO NOT redefine --light-green. It will seamlessly fall back 
+     to the :root version so your links and arrows stay coral! */
+}
+
+/* Add a smooth transition so the color swap doesn't hurt the eyes */
+body,
+.carousel-card,
+nav.navigation,
+.project-item,
+.experience-item {
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease,
+    border-color 0.4s ease;
+}
