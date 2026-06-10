@@ -21,7 +21,6 @@ h1 {
 .title-sub {
   font-size: 1.2rem;
   margin-top: 10px;
-  color: var(--light-green); /* Using your specific green */
 }
 
 /* Sticky Navigation */

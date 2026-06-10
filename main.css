@@ -223,6 +223,14 @@ i {
   border-radius: 12px;
 }
 
+.carousel-card video {
+  width: 100%;
+  height: 100%;
+  /* Ensures the video covers the area without distortion */
+  object-fit: cover;
+  border-radius: 12px;
+}
+
 /* Size and animate all icons together */
 .header-links i {
   font-size: 35px;
@@ -245,4 +253,119 @@ i {
   padding: 0;
   display: flex;
   align-items: center;
+}
+
+@media (min-width: 768px) {
+  .carousel-card {
+    flex: 0 0 45%;
+    height: 400px;
+  }
+}
+
+/* --- 3. Big View (Desktops) --- */
+/* Screen hits 1024px wide: Show 3 cards at once */
+@media (min-width: 1024px) {
+  .carousel-card {
+    flex: 0 0 30%;
+    height: 450px;
+  }
+}
+
+/* --- 3D Interactive Course Grid --- */
+.course-grid {
+  display: grid;
+  /* Drops the minimum width on mobile so 2 cards can fit side-by-side */
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 20px;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+/* The transparent container that sets the 3D perspective */
+.course-card {
+  background-color: transparent;
+  width: 100%;
+  height: 60px;
+  perspective: 1000px; /* Creates the illusion of depth */
+  cursor: default;
+}
+
+/* The wrapper that actually flips */
+.course-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s ease;
+  transform-style: preserve-3d;
+}
+
+/* Trigger the flip on hover */
+.course-card:hover .course-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Shared styling for both sides of the card */
+.course-card-front,
+.course-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  /* Hides the "back" of the element when it faces away from the user */
+  -webkit-backface-visibility: hidden; /* Safari support */
+  backface-visibility: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 5px;
+}
+
+/* The visible front side (Standard Pill Look) */
+.course-card-front {
+  background-color: var(--light-blue);
+  color: var(--gray);
+}
+
+/* Update the back of the card to stack the text vertically */
+.course-card-back {
+  background-color: var(--dark-blue);
+  color: var(--light-green);
+  border: 2px solid var(--light-green); /* Made the border slightly thicker for the highlights */
+  transform: rotateY(180deg);
+
+  display: flex;
+  flex-direction: column; /* Stacks the grade on top of the prof */
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Make the letter grade massive and bold */
+.course-grade {
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* Keep the professor name subtle and clean */
+.course-prof {
+  font-size: 0.75rem;
+  color: var(--gray);
+  font-style: italic;
+}
+
+@media (min-width: 768px) {
+  .course-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+  }
+  .course-card-front,
+  .course-card-back {
+    font-size: 0.9rem;
+  }
 }
