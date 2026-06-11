@@ -5,6 +5,16 @@
   --dark-green: #3e5622;
   --light-green: #e3655b; /*buttons and links*/
   --black: #000000;
+
+  /* --- Immutable Brand Colors (These never change in Light Mode) --- */
+  --brand-navy: #0b132b;
+  --brand-coral: #e3655b;
+}
+/* --- Global Box Model Reset (Fixes width math) --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 html {
@@ -15,12 +25,13 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100dvh;
+  max-width: 100%;
   background-color: var(--dark-blue);
   color: var(--gray);
   font-family: "JetBrains Mono", monospace;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
+  overflow-x: clip; /* Bulletproof iPhone gap fix that doesn't break sticky! */
 }
 
 /* The New Light Mode Override */

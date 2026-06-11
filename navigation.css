@@ -12,6 +12,33 @@ div.brand-name {
   text-align: center;
 }
 
+/* --- Profile Avatar --- */
+.profile-container {
+  margin-bottom: 20px;
+}
+
+.profile-img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%; /* Crops the square image into a perfect circle */
+  object-fit: cover; /* Ensures your face isn't stretched or squished */
+
+  /* Matches your site's aesthetic */
+  border: 4px solid var(--light-blue);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+
+  /* Smooth animation */
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Adds a satisfying hover effect that ties into your brand colors */
+.profile-img:hover {
+  transform: scale(1.05);
+  border-color: var(--light-green);
+}
+
 h1 {
   margin: 0;
   padding: 0;
@@ -31,6 +58,15 @@ nav.navigation {
   width: 100%;
   background-color: var(--black);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  /* The smooth slide animation */
+  transition:
+    transform 0.3s ease-in-out,
+    background-color 0.4s ease;
+}
+
+/* The class JavaScript will toggle to slide it out of view */
+nav.navigation.nav-hidden {
+  transform: translateY(-100%);
 }
 
 nav ul.navigation-list {
@@ -52,6 +88,111 @@ a {
   transition: color 0.3s;
 }
 
-a:hover {
-  color: var(--gray); /* Hover state strictly uses your gray */
+a.navigation-link {
+  position: relative; /* Required for the absolute line underneath */
+}
+
+a.navigation-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background: linear-gradient(90deg, var(--light-green), var(--light-blue));
+  transition: width 0.3s ease;
+}
+
+body.light-mode nav.navigation a::after {
+  background: linear-gradient(
+    90deg,
+    var(--brand-coral),
+    var(--brand-navy)
+  ) !important;
+}
+
+/* --- 1. JS Active States (Always Apply) --- */
+a.navigation-link.active::after {
+  width: 100%;
+}
+
+body.light-mode nav.navigation a.active {
+  color: var(--brand-navy) !important;
+}
+
+/* --- 2. Hover States (Desktop/Mouse Only! Fixes iPhone bug) --- */
+@media (hover: hover) {
+  a:hover {
+    color: var(--gray);
+  }
+  a.navigation-link:hover::after {
+    width: 100%;
+  }
+  body.light-mode nav.navigation a:hover {
+    color: var(--brand-navy) !important;
+  }
+}
+
+.profile-container,
+.brand-name h1,
+.header-links {
+  opacity: 0;
+  animation: heroFadeIn 0.8s ease forwards;
+}
+
+/* Stagger the entrance times */
+.profile-container {
+  animation-delay: 0.1s;
+}
+.brand-name h1 {
+  animation-delay: 0.3s;
+}
+.header-links {
+  animation-delay: 0.7s;
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Terminal Typing Effect --- */
+.title-sub {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--light-green); /* The cursor */
+  width: 17ch; /* Exactly fits "Software Engineer" */
+  /* Runs the typing animation, and blinks the cursor infinitely */
+  animation:
+    heroFadeIn 0.8s ease forwards 0.5s,
+    typing 1.5s steps(17, end) 0.8s forwards,
+    blink-cursor 0.8s step-end infinite;
+  opacity: 0; /* Starts hidden until heroFadeIn kicks in */
+  width: 0; /* Starts at width 0 until typing kicks in */
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 17ch;
+  }
+}
+
+@keyframes blink-cursor {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--light-green);
+  }
 }

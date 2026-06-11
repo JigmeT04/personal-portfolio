@@ -15,14 +15,6 @@ section {
   gap: 20px;
 }
 
-h2 {
-  font-size: 2rem;
-  border-bottom: 2px solid var(--light-blue);
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  color: var(--gray);
-}
-
 h3 {
   margin: 0 0 5px 0;
   color: var(--light-green);
@@ -33,6 +25,22 @@ p {
   line-height: 1.6;
   margin: 0;
 }
+
+/* --- 'Currently' Blurb Styling --- */
+.currently-blurb {
+  background-color: rgba(
+    46,
+    82,
+    102,
+    0.2
+  ); /* Matches the transparent card background */
+  border-left: 3px solid var(--light-green); /* Coral accent line */
+  padding: 12px 18px;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.95rem;
+  margin-top: 5px;
+}
+
 /* --- Modern Grid Layout --- */
 .grid-container {
   display: grid;
@@ -67,6 +75,39 @@ p {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
+/* --- Premium Card Shimmer --- */
+.project-item,
+.experience-item {
+  position: relative;
+  overflow: hidden; /* Required to contain the shimmer inside the card */
+}
+
+/* The shimmer line */
+.project-item::before,
+.experience-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.06),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: all 0.6s ease;
+  pointer-events: none;
+}
+
+/* Trigger the sweep on hover */
+.project-item:hover::before,
+.experience-item:hover::before {
+  left: 150%;
+}
+
 .experience-item ul {
   display: flex;
   flex-direction: column;
@@ -89,8 +130,19 @@ p {
   padding-left: 1em;
 }
 
-/* --- UI Tags for Skills --- */
-.project-item aside {
+/* Update the grid for better mobile handling */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(280px, 1fr)
+  ); /* Dropped from 320px */
+  gap: 25px;
+  width: 100%;
+}
+
+/* Replaced the invalid <aside> styling */
+.skill-tag {
   background-color: var(--light-blue);
   color: var(--gray);
   padding: 8px 14px;
@@ -98,9 +150,8 @@ p {
   font-size: 0.85rem;
   font-weight: bold;
   width: fit-content;
-  margin-top: auto; /* Pushes the tag to the very bottom of the card */
+  margin-top: auto;
 }
-
 /* Slightly tweak headings inside cards to fit the new boxes */
 .project-item h3,
 .experience-item h3 {
@@ -368,4 +419,102 @@ i {
   .course-card-back {
     font-size: 0.9rem;
   }
+}
+
+/* --- Gradient Headings --- */
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  /* Replaces border-bottom with a pseudo-element below */
+  border-bottom: none;
+  padding-bottom: 10px;
+  position: relative;
+
+  /* Coral to Teal Gradient */
+  background: linear-gradient(90deg, var(--light-green), var(--light-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* The new border-bottom that plays nice with gradient text */
+h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--light-blue);
+}
+
+/* --- Scroll Fade-In Animations --- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered load for items next to each other */
+.grid-container .project-item:nth-child(1),
+.grid-container .experience-item:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.grid-container .project-item:nth-child(2),
+.grid-container .experience-item:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.grid-container .project-item:nth-child(3),
+.grid-container .experience-item:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+/* --- Interactive Cursor Glow --- */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 400px;
+  /* A soft radial gradient using your coral accent */
+  background: radial-gradient(
+    circle,
+    rgba(227, 101, 91, 0.12) 0%,
+    transparent 60%
+  );
+  border-radius: 50%;
+  pointer-events: none; /* Crucial: Ensures it doesn't block you from clicking links */
+  z-index: 9999;
+  mix-blend-mode: screen; /* Makes it glow naturally over the dark background */
+  transition: transform 0.07s ease-out; /* The smooth follow delay */
+}
+
+/* --- Light Mode Cursor Glow Fix --- */
+body.light-mode .cursor-glow {
+  /* Multiply blends color into white backgrounds natively */
+  mix-blend-mode: multiply;
+  /* Slightly bump up the opacity from 0.10 to 0.15 so it pops more against the white */
+  background: radial-gradient(
+    circle,
+    rgba(227, 101, 91, 0.15) 0%,
+    transparent 70%
+  );
+}
+
+/* --- Footer --- */
+footer {
+  width: 100%;
+  text-align: center;
+  padding: 25px 20px;
+  margin-top: 50px;
+  border-top: 1px solid var(--light-blue);
+  color: var(--light-green); /* Subtle coral text */
+  font-size: 0.9rem;
 }

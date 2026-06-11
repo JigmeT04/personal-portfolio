@@ -3,6 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Jigme Topgyal - Full-Stack Software Engineer"
+    />
+    <meta property="og:title" content="Jigme Topgyal | Software Engineer" />
+    <meta
+      property="og:description"
+      content="Portfolio of Jigme Topgyal, a CS student and Full-Stack Engineer."
+    />
+    <meta
+      property="og:image"
+      content="https://jigmet04.github.io/portfoliooo/me.jpeg"
+    />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -27,6 +41,9 @@
       </ul>
     </nav>
     <header>
+      <div class="profile-container">
+        <img src="me.jpeg" alt="Jigme Topgyal" class="profile-img" />
+      </div>
       <div class="brand-name">
         <h1>Jigme Topgyal</h1>
         <span class="title-sub">Software Engineer</span>
@@ -67,24 +84,24 @@
       <section id="about">
         <h2>About Me</h2>
         <p>
-          Hello, my name is Jigme Topgyal. Welcome to my personal portfolio!
-          <br />
-        </p>
-        <p>
           I am no stranger to a steep learning curve. By completely
           re-engineering my study habits to master notoriously rigorous
           architecture courses, I
-          <strong>cameback from a 1.5 freshman GPA up to a 3.3 Major GPA</strong
-          >, ultimately becoming a <strong>2x Dean's List Honoree</strong>. I
-          tackle complex software roadblocks with that exact same relentless
-          execution.
+          <strong>came back from a 1.5 GPA to a 3.3 Major GPA</strong>. I tackle
+          complex software roadblocks with that exact same relentless execution.
         </p>
+        <p class="currently-blurb">
+          <strong>Currently:</strong> Expanding my full-stack architecture with
+          Next.js, building client applications, and actively seeking Fall 2026
+          software engineering internships.
+        </p>
+
         <h3>Education</h3>
-        <aside>
-          Queens College, City University of New York | Expected Graduation:
-          2027
-        </aside>
-        <h3>Academic Excellence Highlights</h3>
+        <div class="skill-tag">
+          Queens College, CUNY | Expected Graduation: 2027<br />
+          <strong>2x Dean's List Honoree</strong>
+        </div>
+        <h3>Academic Honors Highlights</h3>
         <p>
           A curated selection of my highest academic performances in rigorous
           upper-level quantitative and systems architecture coursework.
@@ -160,15 +177,6 @@
             </div>
           </div>
         </div>
-        <h3>Technical Skills</h3>
-        <p>
-          <strong>Languages:</strong> Java, C++, TypeScript, JavaScript,
-          HTML/CSS, SQL <br />
-          <strong>Frameworks & Libraries:</strong> Node.js, Next.js, React
-          <br />
-          <strong>Tools & Platforms:</strong> PostgreSQL, Firebase, Render,
-          Retool, Git, GitHub
-        </p>
       </section>
 
       <section id="projects">
@@ -184,7 +192,9 @@
               architecting relational database schemas using PostgreSQL to
               securely store encrypted client records and transaction history.
             </p>
-            <aside>Skills: Next.js, TypeScript, PostgreSQL, Node.js</aside>
+            <div class="skill-tag">
+              Skills: Next.js, TypeScript, PostgreSQL, Node.js
+            </div>
           </div>
 
           <div class="project-item">
@@ -198,7 +208,9 @@
               mechanisms to maximize data throughput and minimize latency
               between background worker processes.
             </p>
-            <aside>Skills: C++, Linux, Concurrency, IPC, Mutexes</aside>
+            <div class="skill-tag">
+              Skills: C++, Linux, Concurrency, IPC, Mutexes
+            </div>
           </div>
 
           <div class="project-item">
@@ -208,7 +220,7 @@
               CSS, and JavaScript. It showcases my skills, projects, and
               experiences in a visually appealing and user-friendly manner.
             </p>
-            <aside>Skills: HTML, CSS, JavaScript</aside>
+            <div class="skill-tag">Skills: HTML, CSS, JavaScript</div>
           </div>
         </div>
       </section>
@@ -312,11 +324,7 @@
                   playsinline
                   poster="preview-image.jpg"
                 >
-                  <source
-                    src="fitness_03.mp4"
-                    type="video/mp4"
-                    alt="video of me benching 165lbs for 1 rep"
-                  />
+                  <source src="fitness_03.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               </div>
@@ -367,7 +375,74 @@
             </div>
           </div>
         </div>
+        <div class="hobby-section">
+          <h3>My Dawgs</h3>
+          <div class="carousel-wrapper">
+            <div class="carousel-track">
+              <div class="carousel-card">
+                <img src="tashi+spiky.jpeg" alt="my dogs at the park" />
+              </div>
+              <div class="carousel-card">
+                <img src="tashi_bday.jpeg" alt="my dog's(shiba) birthday" />
+              </div>
+              <div class="carousel-card">
+                <img
+                  src="tashi_playing.jpeg"
+                  alt="my dogs playing in the snow"
+                />
+              </div>
+              <div class="carousel-card">
+                <img
+                  src="spiky_mogging.jpeg"
+                  alt="my dog(husky) posing on sidewalk"
+                />
+              </div>
+              <div class="carousel-card">
+                <img src="tashi_baby.jpeg" alt="my dog(shiba) as a puppy" />
+              </div>
+              <div class="carousel-card">
+                <img
+                  src="spiky_resting.jpeg"
+                  alt="my dog(husky) resting on couch"
+                />
+              </div>
+              <div class="carousel-card">
+                <img src="tashi+spiky.jpeg" alt="my dogs at the park" />
+              </div>
+              <div class="carousel-card">
+                <img src="tashi_bday.jpeg" alt="my dog's(shiba) birthday" />
+              </div>
+              <div class="carousel-card">
+                <img
+                  src="tashi_playing.jpeg"
+                  alt="my dogs playing in the snow"
+                />
+              </div>
+              <div class="carousel-card">
+                <img
+                  src="spiky_mogging.jpeg"
+                  alt="my dog(husky) posing on sidewalk"
+                />
+              </div>
+              <div class="carousel-card">
+                <img src="tashi_baby.jpeg" alt="my dog(shiba) as a puppy" />
+              </div>
+              <div class="carousel-card">
+                <img
+                  src="spiky_resting.jpeg"
+                  alt="my dog(husky) resting on couch"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
+    <footer>
+      <p>
+        &copy; <span id="footer-year"></span> Jigme Topgyal. All rights
+        reserved.
+      </p>
+    </footer>
   </body>
 </html>
