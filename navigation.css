@@ -164,6 +164,8 @@ body.light-mode nav.navigation a.active {
 
 /* --- Terminal Typing Effect --- */
 .title-sub {
+  font-family: "Courier New", Courier, monospace;
+  -webkit-text-size-adjust: 100%;
   display: inline-block;
   overflow: hidden;
   white-space: nowrap;
