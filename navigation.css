@@ -168,7 +168,7 @@ body.light-mode nav.navigation a.active {
   overflow: hidden;
   white-space: nowrap;
   border-right: 2px solid var(--light-green); /* The cursor */
-  width: 18ch; /* Exactly fits "Software Engineer" */
+  width: 24ch; /* Exactly fits "Software Engineer" */
   /* Runs the typing animation, and blinks the cursor infinitely */
   animation:
     heroFadeIn 0.8s ease forwards 0.5s,
