@@ -164,8 +164,6 @@ body.light-mode nav.navigation a.active {
 
 /* --- Terminal Typing Effect --- */
 .title-sub {
-  font-family: "Courier New", Courier, monospace;
-  -webkit-text-size-adjust: 100%;
   display: inline-block;
   overflow: hidden;
   white-space: nowrap;
@@ -177,7 +175,6 @@ body.light-mode nav.navigation a.active {
     blink-cursor 0.8s step-end infinite;
   opacity: 0; /* Starts hidden until heroFadeIn kicks in */
   width: 0; /* Starts at width 0 until typing kicks in */
-  padding-right: 15px; /*bypass the clipping*/
 }
 
 @keyframes typing {
@@ -185,7 +182,7 @@ body.light-mode nav.navigation a.active {
     width: 0;
   }
   to {
-    width: 17.4ch;
+    width: 17ch;
   }
 }
 
@@ -196,5 +193,21 @@ body.light-mode nav.navigation a.active {
   }
   50% {
     border-color: var(--light-green);
+  }
+}
+
+/* 1. Mobile-specific keyframe with a fractional 'ch' */
+@keyframes typingMobile {
+  from { width: 0; }
+  to { width: 17.5ch; } /* You can tweak this to 17.8ch if it's still slightly cut off */
+}
+
+/* 2. Apply it only to screens smaller than 768px */
+@media (max-width: 768px) {
+  .title-sub {
+    animation:
+      heroFadeIn 0.8s ease forwards 0.5s,
+      typingMobile 1.5s steps(17, end) 0.8s forwards,
+      blink-cursor 0.8s step-end infinite;
   }
 }
