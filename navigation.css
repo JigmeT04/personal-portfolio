@@ -177,7 +177,7 @@ body.light-mode nav.navigation a.active {
     blink-cursor 0.8s step-end infinite;
   opacity: 0; /* Starts hidden until heroFadeIn kicks in */
   width: 0; /* Starts at width 0 until typing kicks in */
-  padding-right: 4px; /*bypass the clipping*/
+  padding-right: 15px; /*bypass the clipping*/
 }
 
 @keyframes typing {
