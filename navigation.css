@@ -199,7 +199,7 @@ body.light-mode nav.navigation a.active {
   to { width: 18.5ch; } /* Extra room for iOS! Won't affect desktop. */
 }
 
-@media (max-width: 768px) {
+@media (pointer: coarse) {
   .title-sub {
     animation:
       heroFadeIn 0.8s ease forwards 0.5s,
