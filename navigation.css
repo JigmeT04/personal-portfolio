@@ -162,25 +162,22 @@ body.light-mode nav.navigation a.active {
   }
 }
 /* --- Terminal Typing Effect --- */
+/* --- Terminal Typing Effect (Powered by JS) --- */
 .title-sub {
   display: inline-block;
-  overflow: hidden;
-  white-space: nowrap;
-
-  /* 1. Force the border to sit OUTSIDE the width so it doesn't steal space */
-  box-sizing: content-box; 
-
-  /* 2. Explicitly force monospace so iOS doesn't mess with letter widths */
   font-family: "Courier New", Courier, monospace; 
-  letter-spacing: 0;
+  font-size: 1.2rem;
+  margin-top: 10px;
 
-  border-right: 2px solid var(--light-green); /* The cursor */
+  /* Just the cursor, CSS no longer controls the width! */
+  border-right: 2px solid var(--light-green); 
+  
+  /* Only fade in and blink the cursor */
   animation:
     heroFadeIn 0.8s ease forwards 0.5s,
-    typing 1.5s steps(17, end) 0.8s forwards,
     blink-cursor 0.8s step-end infinite;
+  
   opacity: 0; 
-  width: 0; 
 }
 
 @keyframes typing {
@@ -191,19 +188,4 @@ body.light-mode nav.navigation a.active {
 @keyframes blink-cursor {
   from, to { border-color: transparent; }
   50% { border-color: var(--light-green); }
-}
-
-/* --- Mobile Fix --- */
-@keyframes typingMobile {
-  from { width: 0; }
-  to { width: 18.5ch; } /* Extra room for iOS! Won't affect desktop. */
-}
-
-@media (pointer: coarse) {
-  .title-sub {
-    animation:
-      heroFadeIn 0.8s ease forwards 0.5s,
-      typingMobile 1.5s steps(17, end) 0.8s forwards,
-      blink-cursor 0.8s step-end infinite;
-  }
 }
