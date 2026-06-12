@@ -161,48 +161,44 @@ body.light-mode nav.navigation a.active {
     transform: translateY(0);
   }
 }
-
 /* --- Terminal Typing Effect --- */
 .title-sub {
   display: inline-block;
   overflow: hidden;
   white-space: nowrap;
+
+  /* 1. Force the border to sit OUTSIDE the width so it doesn't steal space */
+  box-sizing: content-box; 
+
+  /* 2. Explicitly force monospace so iOS doesn't mess with letter widths */
+  font-family: "Courier New", Courier, monospace; 
+  letter-spacing: 0;
+
   border-right: 2px solid var(--light-green); /* The cursor */
-  /* Runs the typing animation, and blinks the cursor infinitely */
   animation:
     heroFadeIn 0.8s ease forwards 0.5s,
     typing 1.5s steps(17, end) 0.8s forwards,
     blink-cursor 0.8s step-end infinite;
-  opacity: 0; /* Starts hidden until heroFadeIn kicks in */
-  width: 0; /* Starts at width 0 until typing kicks in */
+  opacity: 0; 
+  width: 0; 
 }
 
 @keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 17ch;
-  }
+  from { width: 0; }
+  to { width: 17ch; } /* Perfectly calibrated for Desktop */
 }
 
 @keyframes blink-cursor {
-  from,
-  to {
-    border-color: transparent;
-  }
-  50% {
-    border-color: var(--light-green);
-  }
+  from, to { border-color: transparent; }
+  50% { border-color: var(--light-green); }
 }
 
-/* 1. Mobile-specific keyframe with a fractional 'ch' */
+/* --- Mobile Fix --- */
 @keyframes typingMobile {
   from { width: 0; }
-  to { width: 17.5ch; } /* You can tweak this to 17.8ch if it's still slightly cut off */
+  to { width: 18.5ch; } /* Extra room for iOS! Won't affect desktop. */
 }
 
-/* 2. Apply it only to screens smaller than 768px */
 @media (max-width: 768px) {
   .title-sub {
     animation:
