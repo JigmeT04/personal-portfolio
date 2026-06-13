@@ -164,25 +164,6 @@ p {
   font-weight: bold;
 }
 
-/* Target ONLY the social icons in the About section */
-#about nav ul {
-  display: flex;
-  flex-direction: row;
-  padding-left: 0;
-  list-style-type: none;
-  justify-content: center;
-  gap: 30px;
-  margin: 20px 0;
-}
-
-#about nav li {
-  display: block;
-}
-
-i {
-  font-size: 40px;
-  transition: transform 0.2s ease; /* Smooth hover animation */
-}
 /* --- Interactive Hobbies Carousel --- */
 .carousel-wrapper {
   position: relative;
