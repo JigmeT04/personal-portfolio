@@ -198,7 +198,6 @@ i {
   overflow-x: auto;
 
   scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
 
   scrollbar-width: none;
   -ms-overflow-style: none;

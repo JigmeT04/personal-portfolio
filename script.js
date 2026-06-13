@@ -82,44 +82,62 @@ document.addEventListener("DOMContentLoaded", () => {
   sections.forEach((sec) => navObserver.observe(sec));
 
   // ==========================================
-  // 5. INFINITE CAROUSEL LOGIC
+  // 5. INFINITE CAROUSEL LOGIC (The "Silent Jump" Architecture)
   // ==========================================
   const tracks = document.querySelectorAll(".carousel-track");
 
-  const getScrollAmount = (track) => {
-    const card = track.querySelector(".carousel-card");
-    const gap = parseInt(window.getComputedStyle(track).gap) || 0;
-    return card.offsetWidth + gap;
-  };
-
   tracks.forEach((track) => {
-    track.prepend(track.lastElementChild);
-    setTimeout(() => {
-      track.scrollLeft = getScrollAmount(track);
-    }, 0);
+    // 1. Grab current cards. Your HTML has 6 cards (3 unique, repeated). 
+    // We slice the array in half so we just have the 3 unique ones.
+    const allCards = Array.from(track.querySelectorAll(".carousel-card"));
+    const uniqueCards = allCards.slice(0, Math.ceil(allCards.length / 2));
 
+    // 2. Clear the track to rebuild it programmatically
+    track.innerHTML = "";
+
+    // 3. Build 3 identical sets: [Left Buffer] [Center Active] [Right Buffer]
+    // This ensures the user never hits a wall while swiping quickly.
+    for (let i = 0; i < 3; i++) {
+      uniqueCards.forEach((card) => {
+        track.appendChild(card.cloneNode(true));
+      });
+    }
+
+    // 4. Calculate the width of exactly one "set" of unique cards
+    const getSetWidth = () => {
+      const card = track.querySelector(".carousel-card");
+      const gap = parseInt(window.getComputedStyle(track).gap) || 0;
+      return (card.offsetWidth + gap) * uniqueCards.length;
+    };
+
+    // 5. Start the user seamlessly in the middle set
+    setTimeout(() => {
+      track.scrollLeft = getSetWidth();
+    }, 50);
+
+    // 6. The "Silent Jump" scroll logic
     let scrollTimeout;
     track.addEventListener("scroll", () => {
-      window.clearTimeout(scrollTimeout);
+      clearTimeout(scrollTimeout);
 
+      // Wait 150ms for the swipe momentum to completely die before acting
       scrollTimeout = setTimeout(() => {
-        const scrollAmt = getScrollAmount(track);
+        const setWidth = getSetWidth();
+        const currentScroll = track.scrollLeft;
 
-        if (track.scrollLeft < scrollAmt / 2) {
-          track.classList.add("no-transition");
-          track.prepend(track.lastElementChild);
-          track.scrollLeft += scrollAmt;
-          void track.offsetWidth;
-          track.classList.remove("no-transition");
-        } else if (
-          track.scrollLeft >
-          track.scrollWidth - track.clientWidth - scrollAmt / 2
-        ) {
-          track.classList.add("no-transition");
-          track.appendChild(track.firstElementChild);
-          track.scrollLeft -= scrollAmt;
-          void track.offsetWidth;
-          track.classList.remove("no-transition");
+        // If user drifted into the Left Buffer, invisibly teleport to the Center
+        if (currentScroll < setWidth - 10) {
+          track.style.scrollSnapType = "none";
+          track.scrollLeft = currentScroll + setWidth;
+          track.offsetHeight; // Force browser to process the jump instantly
+          track.style.scrollSnapType = "x mandatory";
+        }
+        // If user drifted into the Right Buffer, invisibly teleport back to Center
+        else if (currentScroll >= setWidth * 2 - 10) {
+          track.style.scrollSnapType = "none";
+          track.scrollLeft = currentScroll - setWidth;
+          track.offsetHeight; 
+          track.style.scrollSnapType = "x mandatory";
         }
       }, 150);
     });
@@ -129,10 +147,8 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", (e) => {
     if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
 
-    let targetTrack = document.querySelector(
-      ".carousel-wrapper:hover .carousel-track",
-    );
-
+    let targetTrack = document.querySelector(".carousel-wrapper:hover .carousel-track");
+    
     if (!targetTrack) {
       targetTrack = Array.from(tracks).find((t) => {
         const rect = t.getBoundingClientRect();
@@ -142,7 +158,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (targetTrack) {
       e.preventDefault();
-      const scrollAmt = getScrollAmount(targetTrack);
+      const card = targetTrack.querySelector(".carousel-card");
+      const gap = parseInt(window.getComputedStyle(targetTrack).gap) || 0;
+      const scrollAmt = card.offsetWidth + gap;
+      
+      // We manually declare smooth behavior here so keys still slide smoothly
       if (e.key === "ArrowRight") {
         targetTrack.scrollBy({ left: scrollAmt, behavior: "smooth" });
       } else {
