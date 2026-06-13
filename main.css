@@ -205,10 +205,6 @@ p {
   overflow: hidden; 
 }
 
-.carousel-card h3 {
-  color: var(--gray);
-  font-size: 2rem;
-}
 /* --- Utility Class for JavaScript DOM Shifting --- */
 .carousel-track.no-transition {
   scroll-behavior: auto !important;
