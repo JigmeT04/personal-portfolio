@@ -180,11 +180,6 @@ body.light-mode nav.navigation a.active {
   opacity: 0; 
 }
 
-@keyframes typing {
-  from { width: 0; }
-  to { width: 17ch; } /* Perfectly calibrated for Desktop */
-}
-
 @keyframes blink-cursor {
   from, to { border-color: transparent; }
   50% { border-color: var(--light-green); }
