@@ -81,8 +81,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   sections.forEach((sec) => navObserver.observe(sec));
 
- // ==========================================
-  // 5. INFINITE CAROUSEL LOGIC (Reverted for Smoothness)
+  // ==========================================
+  // 5. INFINITE CAROUSEL LOGIC
   // ==========================================
   const tracks = document.querySelectorAll(".carousel-track");
 
@@ -102,7 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
     track.addEventListener("scroll", () => {
       window.clearTimeout(scrollTimeout);
 
-      // The 150ms debounce ensures JS waits for native scroll physics to finish
       scrollTimeout = setTimeout(() => {
         const scrollAmt = getScrollAmount(track);
 
@@ -110,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
           track.classList.add("no-transition");
           track.prepend(track.lastElementChild);
           track.scrollLeft += scrollAmt;
-          void track.offsetWidth; // Trigger reflow
+          void track.offsetWidth;
           track.classList.remove("no-transition");
         } else if (
           track.scrollLeft >
@@ -119,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
           track.classList.add("no-transition");
           track.appendChild(track.firstElementChild);
           track.scrollLeft -= scrollAmt;
-          void track.offsetWidth; // Trigger reflow
+          void track.offsetWidth;
           track.classList.remove("no-transition");
         }
       }, 150);
