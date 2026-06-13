@@ -179,4 +179,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     lastScrollY = window.scrollY;
   });
+
+  // ==========================================
+  // 8. TERMINAL TYPING EFFECT (JS POWERED)
+  // ==========================================
+  const textToType = "Software Engineer";
+  const typeElement = document.querySelector(".title-sub");
+  
+  if (typeElement) {
+    typeElement.textContent = ""; // Clear the element just in case
+    
+    let charIndex = 0;
+    
+    // Wait for the CSS heroFadeIn to finish (approx 1300ms) before typing
+    setTimeout(() => {
+      const typeWriterInterval = setInterval(() => {
+        if (charIndex < textToType.length) {
+          typeElement.textContent += textToType.charAt(charIndex);
+          charIndex++;
+        } else {
+          clearInterval(typeWriterInterval); // Stop the interval when done
+        }
+      }, 90); // 90ms per letter feels like a natural typing speed
+    }, 1300);
+  }
 });
