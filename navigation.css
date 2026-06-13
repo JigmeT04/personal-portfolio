@@ -170,17 +170,22 @@ body.light-mode nav.navigation a.active {
   margin-top: 10px;
 
   /* Just the cursor, CSS no longer controls the width! */
-  border-right: 2px solid var(--light-green); 
-  
+  border-right: 2px solid var(--light-green);
+
   /* Only fade in and blink the cursor */
   animation:
     heroFadeIn 0.8s ease forwards 0.5s,
     blink-cursor 0.8s step-end infinite;
-  
-  opacity: 0; 
+
+  opacity: 0;
 }
 
 @keyframes blink-cursor {
-  from, to { border-color: transparent; }
-  50% { border-color: var(--light-green); }
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--light-green);
+  }
 }
