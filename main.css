@@ -164,6 +164,25 @@ p {
   font-weight: bold;
 }
 
+/* Target ONLY the social icons in the About section */
+#about nav ul {
+  display: flex;
+  flex-direction: row;
+  padding-left: 0;
+  list-style-type: none;
+  justify-content: center;
+  gap: 30px;
+  margin: 20px 0;
+}
+
+#about nav li {
+  display: block;
+}
+
+i {
+  font-size: 40px;
+  transition: transform 0.2s ease; /* Smooth hover animation */
+}
 /* --- Interactive Hobbies Carousel --- */
 .carousel-wrapper {
   position: relative;
@@ -191,20 +210,26 @@ p {
 }
 
 .carousel-card {
+  /* Takes up 60% of the screen, leaving room for the edges of the other cards */
   flex: 0 0 60%;
-  height: 35vh; 
-  min-height: 250px;
+  height: 25vh;
+  min-height: 200px;
+
   background-color: var(--light-blue);
   border-radius: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  /* Magic property: Forces the browser to put this card perfectly in the center */
   scroll-snap-align: center;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-  padding: 0; 
-  overflow: hidden; 
 }
 
+.carousel-card h3 {
+  color: var(--gray);
+  font-size: 2rem;
+}
 /* --- Utility Class for JavaScript DOM Shifting --- */
 .carousel-track.no-transition {
   scroll-behavior: auto !important;
@@ -231,6 +256,14 @@ p {
   margin-bottom: 15px;
   font-size: 1.8rem;
   color: var(--light-green);
+}
+
+/* Adjust the card size so 3 carousels don't take up too much vertical space */
+.carousel-card {
+  height: 35vh; /* Reduced from 50vh */
+  min-height: 250px;
+  padding: 0; /* Remove padding so the image touches the very edge */
+  overflow: hidden; /* Keeps the rounded corners perfectly clean */
 }
 
 /* Make images perfectly cover the card without stretching */
