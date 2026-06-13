@@ -191,20 +191,18 @@ p {
 }
 
 .carousel-card {
-  /* Takes up 60% of the screen, leaving room for the edges of the other cards */
   flex: 0 0 60%;
-  height: 25vh;
-  min-height: 200px;
-
+  height: 35vh; 
+  min-height: 250px;
   background-color: var(--light-blue);
   border-radius: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  /* Magic property: Forces the browser to put this card perfectly in the center */
   scroll-snap-align: center;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  padding: 0; 
+  overflow: hidden; 
 }
 
 .carousel-card h3 {
@@ -237,14 +235,6 @@ p {
   margin-bottom: 15px;
   font-size: 1.8rem;
   color: var(--light-green);
-}
-
-/* Adjust the card size so 3 carousels don't take up too much vertical space */
-.carousel-card {
-  height: 35vh; /* Reduced from 50vh */
-  min-height: 250px;
-  padding: 0; /* Remove padding so the image touches the very edge */
-  overflow: hidden; /* Keeps the rounded corners perfectly clean */
 }
 
 /* Make images perfectly cover the card without stretching */
