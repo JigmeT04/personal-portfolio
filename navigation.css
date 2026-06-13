@@ -165,7 +165,8 @@ body.light-mode nav.navigation a.active {
 /* --- Terminal Typing Effect (Powered by JS) --- */
 .title-sub {
   display: inline-block;
-  font-family: "JetBrains Mono", monospace; /* Updated to match your site! */  font-size: 1.2rem;
+  font-family: "JetBrains Mono", monospace; /* Updated to match your site! */
+  font-size: 1.2rem;
   margin-top: 10px;
 
   /* Just the cursor, CSS no longer controls the width! */
