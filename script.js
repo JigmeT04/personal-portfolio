@@ -81,8 +81,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   sections.forEach((sec) => navObserver.observe(sec));
 
-  // ==========================================
-  // 5. INFINITE CAROUSEL LOGIC
+ // ==========================================
+  // 5. INFINITE CAROUSEL LOGIC (iOS Optimized)
   // ==========================================
   const tracks = document.querySelectorAll(".carousel-track");
 
@@ -93,62 +93,49 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   tracks.forEach((track) => {
+    // Setup initial DOM position
     track.prepend(track.lastElementChild);
-    setTimeout(() => {
+    
+    // Wait for the browser to paint before setting initial scroll
+    requestAnimationFrame(() => {
       track.scrollLeft = getScrollAmount(track);
-    }, 0);
-
-    let scrollTimeout;
-    track.addEventListener("scroll", () => {
-      window.clearTimeout(scrollTimeout);
-
-      scrollTimeout = setTimeout(() => {
-        const scrollAmt = getScrollAmount(track);
-
-        if (track.scrollLeft < scrollAmt / 2) {
-          track.classList.add("no-transition");
-          track.prepend(track.lastElementChild);
-          track.scrollLeft += scrollAmt;
-          void track.offsetWidth;
-          track.classList.remove("no-transition");
-        } else if (
-          track.scrollLeft >
-          track.scrollWidth - track.clientWidth - scrollAmt / 2
-        ) {
-          track.classList.add("no-transition");
-          track.appendChild(track.firstElementChild);
-          track.scrollLeft -= scrollAmt;
-          void track.offsetWidth;
-          track.classList.remove("no-transition");
-        }
-      }, 150);
     });
-  });
 
-  // Carousel Keyboard Navigation
-  document.addEventListener("keydown", (e) => {
-    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    let isShifting = false; // Lock to prevent rapid-fire scroll events on iOS
 
-    let targetTrack = document.querySelector(
-      ".carousel-wrapper:hover .carousel-track",
-    );
+    track.addEventListener("scroll", () => {
+      if (isShifting) return;
 
-    if (!targetTrack) {
-      targetTrack = Array.from(tracks).find((t) => {
-        const rect = t.getBoundingClientRect();
-        return rect.top < window.innerHeight && rect.bottom > 0;
-      });
-    }
+      const scrollAmt = getScrollAmount(track);
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      const buffer = 5; // A 5px buffer catches iOS momentum before the hard bounce
 
-    if (targetTrack) {
-      e.preventDefault();
-      const scrollAmt = getScrollAmount(targetTrack);
-      if (e.key === "ArrowRight") {
-        targetTrack.scrollBy({ left: scrollAmt, behavior: "smooth" });
-      } else {
-        targetTrack.scrollBy({ left: -scrollAmt, behavior: "smooth" });
+      // If scrolled to the left edge
+      if (track.scrollLeft <= buffer) {
+        isShifting = true;
+        track.classList.add("no-transition");
+        track.prepend(track.lastElementChild);
+        track.scrollLeft += scrollAmt;
+
+        // Give iOS Safari time to process the DOM shift before re-enabling snap
+        setTimeout(() => {
+          track.classList.remove("no-transition");
+          isShifting = false;
+        }, 50); 
+      } 
+      // If scrolled to the right edge
+      else if (track.scrollLeft >= maxScroll - buffer) {
+        isShifting = true;
+        track.classList.add("no-transition");
+        track.appendChild(track.firstElementChild);
+        track.scrollLeft -= scrollAmt;
+
+        setTimeout(() => {
+          track.classList.remove("no-transition");
+          isShifting = false;
+        }, 50);
       }
-    }
+    });
   });
 
   // ==========================================
