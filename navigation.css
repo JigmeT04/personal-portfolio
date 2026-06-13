@@ -176,8 +176,17 @@ body.light-mode nav.navigation a.active {
   animation:
     heroFadeIn 0.8s ease forwards 0.5s,
     blink-cursor 0.8s step-end infinite;
-
   opacity: 0;
+  opacity: 0;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 17ch;
+  } /* Perfectly calibrated for Desktop */
 }
 
 @keyframes blink-cursor {
